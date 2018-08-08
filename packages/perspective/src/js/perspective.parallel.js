@@ -84,6 +84,7 @@ function view(table_name, worker, config) {
     this._worker = worker;
     this._config = config;
     this._name = Math.random() + "";
+
     var msg = {
         cmd: 'view',
         view_name: this._name,
@@ -102,6 +103,8 @@ view.prototype.to_json = async_queue('to_json');
 view.prototype.to_csv = async_queue('to_csv');
 
 view.prototype.schema = async_queue('schema');
+
+view.prototype.computed_schema = async_queue('computed_schema');
 
 view.prototype.num_columns = async_queue('num_columns');
 
@@ -163,6 +166,8 @@ table.prototype.view = function (config) {
 }
 
 table.prototype.schema = async_queue('schema', 'table_method');
+
+table.prototype.computed_schema = async_queue('computed_schema', 'table_method');
 
 table.prototype.size = async_queue('size', 'table_method');
 
